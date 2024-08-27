@@ -48,7 +48,7 @@ function themNV() {
     localStorage.setItem("DSNV_JSON", dataJSON);
     renderNV(nhanvienArr);
     console.log(nhanvienArr);
-    reset();
+    $("#myModal").modal("hide")
   }
 }
 
@@ -78,14 +78,26 @@ function suaNV(id){
 
 function capNhat(){
   var nv = thongTinForm();
-  var index = nhanvienArr.findIndex(function (item){
-    return item.tknv === nv.tknv;
-  })
-  nhanvienArr[index] = nv;
-  var dataJSON = JSON.stringify(nhanvienArr);
-  localStorage.setItem("DSNV_JSON", dataJSON);
-  renderNV(nhanvienArr);
-  reset();
+  var isValid = validateTaiKhoan(nv.tknv , "tbTKNV") &
+  validateName(nv.name, "tbTen") &
+  validateEmail(nv.email, "tbEmail") &
+  validatePassWord(nv.passWord,"tbMatKhau") &
+  validateNgayLam(nv.datePicker, "tbNgay") &
+  validateLuongCB(nv.luongCB,"tbLuongCB") &
+  validateChucVu(nv.chucVu, "tbChucVu") &
+  validateGioLam(nv.gioLam, "tbGiolam");
+  if(isValid){
+    var index = nhanvienArr.findIndex(function (item){
+      return item.tknv === nv.tknv;
+    })
+    nhanvienArr[index] = nv;
+    console.log(nv);
+    var dataJSON = JSON.stringify(nhanvienArr);
+    localStorage.setItem("DSNV_JSON", dataJSON);
+    renderNV(nhanvienArr);
+    // reset();
+    $("#myModal").modal("hide");
+  }
 }
 
 function timKiem(){

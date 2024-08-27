@@ -108,7 +108,7 @@ function validateChucVu(chucVu, idErr) {
 	var validChucVu = ["Sếp", "Trưởng phòng", "Nhân viên"];
 	
 	if (!validChucVu.includes(chucVu)) {
-	  document.getElementById(idErr).innerHTML = "Chức vụ không hợp lệ. Vui lòng chọn Giám đốc, Trưởng Phòng, hoặc Nhân Viên.";
+	  document.getElementById(idErr).innerHTML = "Chức vụ không hợp lệ. Vui lòng chọn Sếp, Trưởng Phòng, hoặc Nhân Viên.";
 	  document.getElementById(idErr).style.display = "block";
 	  return false;
 	}
