@@ -55,12 +55,22 @@ function themNV() {
 function reset(){
   document.getElementById("formQLNV").reset();
   document.getElementById("tknv").disabled = false;
+  document.getElementById("tbTKNV").innerHTML = "";
+  document.getElementById("tbTen").innerHTML = "";
+  document.getElementById("tbEmail").innerHTML = "";
+  document.getElementById("tbMatKhau").innerHTML = "";
+  document.getElementById("tbNgay").innerHTML = "";
+  document.getElementById("tbLuongCB").innerHTML = "";
+  document.getElementById("tbChucVu").innerHTML = "";
+  document.getElementById("tbGiolam").innerHTML = "";
 }
 
 function xoaNV(id){
   var index = nhanvienArr.findIndex(function(item){
     return item.tknv === id;
   });
+
+  
   nhanvienArr.splice(index,1);
   var dataJSON = JSON.stringify(nhanvienArr);
   localStorage.setItem("DSNV_JSON", dataJSON);
@@ -68,11 +78,15 @@ function xoaNV(id){
 }
 
 function suaNV(id){
+  // id => tìm ra index => lấy ra object sinh viên cần sửa => hiển thị lên form
   var index = nhanvienArr.findIndex(function (item) {
     return item.tknv === id;
   });
+  // Lấy ra đối tượng sinh viên cần sửa
   var nv = nhanvienArr[index];
+  console.log(nv);
   document.getElementById("tknv").disabled = true;
+  // Hiển thị thông tin sinh viên lên form để người dùng có thể sửa
   hienThiNhanVien(nv);
 }
 
